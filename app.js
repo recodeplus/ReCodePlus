@@ -224,6 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 { title: "Evolucion de Software", desc: "Mejora de interfaz y estructura para mayor eficiencia." },
                 { title: "Sistemas de gestion", desc: "Control y administración eficiente de procesos y recursos." }
             ]
+        },
+        marketing: {
+            tema: "theme-marketing", title: "Marketing Inteligente",
+            slides: [
+                { title: "Creacion de contenido de IA", desc: "Creación de imagenes y videos con inteligencia artificial." },
+                { title: "Impulso de publicidad", desc: "Gestión de campañas publicitarias como Meta Ads, etc." }
+            ]
         }
     };
 
@@ -422,7 +429,6 @@ document.addEventListener('DOMContentLoaded', () => {
         serviceCards.forEach((card, index) => {
             const isLeft = index % 2 === 0;
             card.dataset.side = isLeft ? "left" : "right";
-            // Lógica intacta: Cartas 1 y 3 (index 0 y 2) desde la izquierda (-100), 2 y 4 desde la derecha (100)
             gsap.set(card, { x: isLeft ? -100 : 100, y: 50, opacity: 0, scale: 0.95 });
         });
         
@@ -539,7 +545,6 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
     }
 
-    // EL TRUCO PARA MÓVILES: El efecto 3D (tilt) solo se aplica si tienes un mouse de verdad
     if (window.matchMedia("(hover: hover)").matches) {
         document.querySelectorAll('.tilt-card:not(.contacto-section .tilt-card)').forEach(card => {
             card.addEventListener('mousemove', (e) => {
