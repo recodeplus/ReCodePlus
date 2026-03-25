@@ -145,10 +145,8 @@ section, main, .servicios, .portafolio, .acerca, #tecnologias, #conecta, .contac
     top: 50%;
     transform: translateY(-50%);
     font-family: 'Inter', sans-serif;
-    /* Tamaño dinámico basado en la altura de la pantalla (vh) */
     font-size: clamp(15px, 1.5vh, 14px);
     font-weight: 700;
-    /* Espaciado dinámico */
     letter-spacing: clamp(4px, 1vh, 12px);
     writing-mode: vertical-rl;
     text-orientation: upright;
@@ -159,7 +157,6 @@ section, main, .servicios, .portafolio, .acerca, #tecnologias, #conecta, .contac
     transition: all 0.4s ease;
     cursor: default;
     user-select: none;
-    /* Evita que el texto salte a otro renglón */
     white-space: nowrap;
 }
 .jp-left { left: 25px; }
@@ -177,7 +174,6 @@ section, main, .servicios, .portafolio, .acerca, #tecnologias, #conecta, .contac
     animation: gradientShift 3s linear infinite;
 }
 
-/* Ocultar en móviles o pantallas muy bajitas */
 @media (max-width: 768px), (max-height: 500px) {
     .jp-decor { display: none; }
 }
@@ -253,7 +249,6 @@ body[data-current-theme="dark"] .fixed-background-effects { opacity: 1; }
    NAVBAR & HERO
    ========================================= */
 .smart-navbar { position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; background: transparent; backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.4s ease, border-bottom 1s ease, padding 0.4s ease; }
-/* Nueva clase para ocultar la barra al bajar */
 .nav-hidden { transform: translateY(-100%); }
 
 .logo { font-family: 'SphereFez', sans-serif; font-size: 24px; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; color: var(--text); transition: color 0.8s; }
@@ -288,7 +283,16 @@ body[data-current-theme="light"] .hero-title .accent { background: linear-gradie
 
 .servicios h2, .section-title, .section-title-gradient, .portfolio-title, .subsection-title { font-family: 'PavelT', sans-serif; text-transform: uppercase; letter-spacing: 12px; color: var(--text); transition: color 0.8s; width: 100%; margin-bottom: 30px; text-align: center; font-size: 70px; }
 .servicios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 11; perspective: 2000px; }
-.servicio-feature:nth-child(1) { --tron-c: #00C2FF; } .servicio-feature:nth-child(2) { --tron-c: #BD00FF; } .servicio-feature:nth-child(3) { --tron-c: #00FFD1; } .servicio-feature:nth-child(4) { --tron-c: #FF3D00; }
+
+/* Aseguramos que la 5ta tarjeta (Marketing) quede centrada en PC/Tablet */
+@media (min-width: 769px) {
+    .servicio-centrado {
+        grid-column: 1 / -1; /* Ocupa todo el ancho disponible */
+        max-width: 49%; /* Se reduce para simular estar al centro junto con el gap */
+        margin: 0 auto;
+    }
+}
+
 .servicio-feature { position: relative; background: #F4F4F4; border-radius: 24px; padding: 0; border: none; overflow: hidden; opacity: 0; box-shadow: none; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease; }
 .servicio-feature.visible { opacity: 1; }
 .servicio-feature:hover { transform: translateY(-10px); background: #FFFFFF; box-shadow: 0 20px 50px rgba(0,0,0,0.08); z-index: 10; }
@@ -315,13 +319,62 @@ body[data-current-theme="light"] .hero-title .accent { background: linear-gradie
 .project-card:hover::after { left: 150%; transition: 0.7s; }
 .project-thumb { height: 200px; flex-shrink: 0; background-size: cover; background-position: center; transition: transform 0.5s ease; position: relative; z-index: 1; }
 .project-card:hover .project-thumb { transform: scale(1.05); }
-.thumb-a { background: linear-gradient(135deg,#ff9a9e,#fecfef); } .thumb-b { background: linear-gradient(135deg,#a18cd1,#fbc2eb); } .thumb-c { background: linear-gradient(135deg,#84fab0,#8fd3f4); } .thumb-d { background: linear-gradient(135deg,#e0c3fc,#8ec5fc); } .thumb-e { background: linear-gradient(135deg,#43e97b,#38f9d7); } .thumb-f { background: linear-gradient(135deg,#fa709a,#fee140); }
+.thumb-a { background: linear-gradient(135deg,#ff9a9e,#fecfef); } .thumb-b { background: linear-gradient(135deg,#a18cd1,#fbc2eb); } 
 .project-body { padding: 22px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; background: var(--card-bg); position: relative; z-index: 2; flex-grow: 1; transition: background 0.8s; }
 .project-meta { font-size: 11px; font-weight: 700; color: var(--tron-blue); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 1px; }
 .project-title { font-size: 18px; margin-bottom: 6px; color: var(--text); text-shadow: 0 0 10px rgba(0,0,0,0.5); transition: color 0.8s; }
 .project-desc { font-size: 13px; color: var(--text-sub); margin-bottom: 15px; transition: color 0.8s; }
 .project-open { margin-top: auto; padding: 12px 15px; background: transparent; border: 1px solid var(--tron-blue); color: var(--text); border-radius: 4px; cursor: pointer; transition: 0.2s all ease; text-transform: uppercase; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-align: center; }
 .project-open:hover { background: var(--tron-blue); box-shadow: 0 0 15px var(--tron-blue); color: #000; }
+
+/* CARTAS DE CRISTAL (AGUA TRANSPARENTE) PARA PORTAFOLIO "COMING SOON" */
+.glass-card {
+    background: rgba(255, 255, 255, 0.01) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+/* Efecto reflejo de luz (el charco brillante) */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 40%, transparent 50%, transparent 100%);
+    transform: rotate(30deg);
+    pointer-events: none;
+    z-index: 1;
+}
+.glass-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+.coming-soon-text {
+    font-family: 'Proxon', sans-serif;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+body[data-current-theme="light"] .glass-card {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05) !important;
+}
+body[data-current-theme="light"] .coming-soon-text {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: none;
+}
+body[data-current-theme="light"] .glass-card::before {
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.6) 0%, transparent 50%);
+}
 
 /* =========================================
    ACERCA DE
@@ -476,6 +529,8 @@ body[data-current-theme="light"] .hero-title .accent { background: linear-gradie
 .theme-ia { background: linear-gradient(135deg, #240b36, #c31432) !important; border: 1px solid rgba(142, 84, 233, 0.3) !important; }
 .theme-apps { background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%) !important; border: 1px solid rgba(0, 255, 255, 0.3) !important; }
 .theme-software { background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%) !important; border: 1px solid rgba(255, 69, 0, 0.3) !important; }
+/* NUEVO TEMA PARA MARKETING */
+.theme-marketing { background: linear-gradient(135deg, #f12711 0%, #f5af19 100%) !important; border: 1px solid rgba(245, 175, 25, 0.3) !important; }
 
 .slide-indicators { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 20; }
 .indicator-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
@@ -605,6 +660,7 @@ body[data-current-theme="light"] .hero-title .accent { background: linear-gradie
     .hero-sub { font-size: 14px; text-align: center; display: block; margin: 0 auto; }
 
     .servicios-grid { grid-template-columns: 1fr; gap: 25px; }
+    .servicio-centrado { max-width: 100%; grid-column: auto; } /* En móvil se vuelve tamaño normal */
     .servicio-feature { padding-bottom: 20px; }
     .sf-content { padding: 25px 25px 10px 25px; align-items: center; text-align: center; }
     .sf-action { padding: 0 25px 25px 25px; width: 100%; display: flex; justify-content: center; }
